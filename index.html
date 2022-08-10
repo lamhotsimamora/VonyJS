@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vony Javascript</title>
+    <script src="vony.js"></script>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css' integrity='sha512-XWTTruHZEYJsxV3W/lSXG1n3Q39YIWOstqvmFsdNEEQfHoZ6vm6E9GK2OrF6DSJSpIbRbi+Nn0WDPID9O7xB2Q==' crossorigin='anonymous'/>
+</head>
+
+<body>
+    <br>
+
+    <div class="container">
+       <h3 id="app"></h3>
+       <hr>
+       <textarea id="mytext" name="" cols="50" rows="10"></textarea>
+    </div>
+   
+    <script>
+        
+        var txt = Vony({
+            id :'app'
+        }).set('Hello World From Vony JS')
+        .on('click',()=>{
+            alert("Hello World From Vony JS !")
+        });
+
+
+        var mytext = Vony({
+            id : 'mytext',
+            url : 'https://jsonplaceholder.typicode.com/users'
+        }).ajax((response)=>{
+            mytext.set(response)
+        })
+
+
+    </script>
+</body>
+
+</html>
