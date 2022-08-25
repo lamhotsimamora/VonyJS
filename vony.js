@@ -205,6 +205,18 @@ class _vn_ {
             this.obj.setAttribute(key,val);
         }
     }
+    
+    enabled(v){
+        if (this.obj){
+            this.obj.enabled =true;
+        }
+    }
+
+    disabled(){
+        if (this.obj){
+            this.obj.disabled =true;
+        }
+    }
 
 }
 
