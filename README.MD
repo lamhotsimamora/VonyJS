@@ -12,5 +12,8 @@ Vony({id:'app'}).get();
 Vony({url:'example.com',method:'post'}).ajax((response)=>{
     // start fire !
 });
+Vony({urlRoute:'/login.html',title:'Login'}).route(()=>{
+    // start fire !
+})
 
 ```
