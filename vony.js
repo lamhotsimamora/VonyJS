@@ -1,3 +1,9 @@
+function ready(callback){
+    window.addEventListener("DOMContentLoaded", function(){
+        callback();
+    });
+}
+
 function log(message) {
     console.warn('[Vony-JS] ' + message)
 }
@@ -64,6 +70,11 @@ class _vn_ {
             this.method =data.method ? data.method :null;
             this.data =data.data ? data.data :null;
             this.obj = null;
+            this.title = data.title ? data.title : null;
+            if (this.title!=null){
+                this.makeTitle(this.title);
+            }
+            this.urlRoute = data.urlRoute ? data.urlRoute :null;
             this.element = null;
             this.documentGetElementById();
             if (data.focus && data.focus == true) {
@@ -210,12 +221,32 @@ class _vn_ {
         if (this.obj){
             this.obj.enabled =true;
         }
+        return this
     }
 
     disabled(){
         if (this.obj){
             this.obj.disabled =true;
         }
+        return this
+    }
+
+    makeTitle(value){
+        document.title = value;
+    }
+
+    route(callback=null,title=null,urlRoute=null){
+        let finalTitle,finalUrlPath;
+        finalTitle =  (title!=null) ? title : this.title;
+        finalUrlPath =  (urlRoute!=null) ? urlRoute : this.urlRoute;
+        finalUrlPath = finalUrlPath.toLowerCase();
+
+        window.history.pushState({finalUrlPath},finalTitle,finalUrlPath);
+        callback=null ? null : callback();
+        window.onpopstate = (event) => {
+            log(`location: ${document.location}, state: ${JSON.stringify(event.state)}`)
+        }
+        return this
     }
 
 }
